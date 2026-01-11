@@ -177,15 +177,7 @@ function setupEventListeners() {
   });
 
   document.getElementById('drawBtn').addEventListener('click', drawInitialCards);
-
-  const copyBtn = document.getElementById('copyBtn');
-  console.log('복사 버튼 찾음:', copyBtn);
-  if (copyBtn) {
-    copyBtn.addEventListener('click', copyCardsToClipboard);
-    console.log('복사 버튼 이벤트 리스너 등록 완료');
-  } else {
-    console.error('복사 버튼을 찾을 수 없습니다!');
-  }
+  document.getElementById('copyBtn').addEventListener('click', copyCardsToClipboard);
 }
 
 function drawInitialCards() {
@@ -413,27 +405,20 @@ function shouldUseWhiteText(hexColor) {
 }
 
 function copyCardsToClipboard() {
-  console.log('복사 버튼 클릭됨');
-  console.log('cardHierarchy:', cardHierarchy);
-
   const rootCards = Object.values(cardHierarchy).filter(info => info.parentId === null);
-  console.log('rootCards:', rootCards);
 
   if (rootCards.length === 0) {
     alert('카드를 먼저 뽑아주세요!');
     return;
   }
 
-  let text = '🔮 리치타로 카드 리딩 결과\n\n';
+  let text = '';
 
   rootCards.forEach((cardInfo, index) => {
     text += formatCardTree(cardInfo, 0, index + 1);
   });
 
-  console.log('복사할 텍스트:', text);
-
   navigator.clipboard.writeText(text).then(() => {
-    console.log('클립보드 복사 성공');
     const copyBtn = document.getElementById('copyBtn');
     const originalText = copyBtn.textContent;
     copyBtn.textContent = '✓ 복사완료!';
@@ -448,8 +433,10 @@ function copyCardsToClipboard() {
 
 function formatCardTree(cardInfo, depth, number) {
   const indent = '  '.repeat(depth);
-  const prefix = depth === 0 ? `${number}. ` : '↳ ';
-  let text = `${indent}${prefix}${cardInfo.card.name}\n`;
+  const prefix = depth === 0 ? '' : '↳ ';
+  // Remove number prefix from card name (e.g., "8. 힘(Strength)" -> "힘(Strength)")
+  const cardName = cardInfo.card.name.replace(/^\d+\.\s*/, '');
+  let text = `${indent}${prefix}${cardName}\n`;
 
   if (cardInfo.children.length > 0) {
     cardInfo.children.forEach((childId, index) => {
