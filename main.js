@@ -276,9 +276,9 @@ function createCardElement(card, depth) {
 
   cardMain.innerHTML = cardHTML;
 
-  // Add button section
+  // Add button section (only for depth 0 and 1)
   const cardInfo = cardHierarchy[card.id];
-  if (cardInfo && cardInfo.addCount < 2) {
+  if (cardInfo && cardInfo.addCount < 2 && depth < 2) {
     const addSection = document.createElement('div');
     addSection.className = 'card-add-section';
     addSection.innerHTML = `
