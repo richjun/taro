@@ -1,1 +1,492 @@
-/* Add styles here */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.guide-text {
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.selection-panel {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+}
+
+.card-type-section,
+.card-count-section {
+  margin-bottom: 25px;
+}
+
+.card-type-section h3,
+.card-count-section h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.type-btn,
+.count-btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px 20px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.type-btn:hover,
+.count-btn:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+}
+
+.type-btn.active,
+.count-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+}
+
+.draw-btn {
+  width: 100%;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.draw-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.draw-btn:active {
+  transform: translateY(0);
+}
+
+.results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card-wrapper {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  animation: cardAppear 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  max-width: 350px;
+}
+
+.card-wrapper[data-depth="0"] {
+  background: white;
+}
+
+.card-wrapper[data-depth="1"] {
+  background: rgba(255, 255, 255, 0.95);
+  max-width: 250px;
+  min-width: 200px;
+}
+
+.card-wrapper[data-depth="2"] {
+  background: rgba(255, 255, 255, 0.9);
+  max-width: 220px;
+  min-width: 180px;
+}
+
+@keyframes cardAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tarot card styles */
+.tarot-card {
+  background: white;
+  padding: 0;
+  height: auto;
+  min-height: auto;
+}
+
+.card-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+.card-name-overlay {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 1.3;
+}
+
+/* Lenormand card styles */
+.lenormand-card {
+  background: linear-gradient(135deg, #2563EB 0%, #1d4ed8 100%);
+  min-height: 220px;
+  padding: 25px;
+}
+
+.lenormand-card .card-content {
+  text-align: center;
+  color: white;
+}
+
+.card-emoji {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.lenormand-card .card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* Color card styles */
+.color-card {
+  min-height: 180px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-name {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Add controls section */
+.card-add-section {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px dashed #e2e8f0;
+}
+
+.add-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-type-btns,
+.add-count-btns {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.mini-btn {
+  padding: 6px 12px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  flex: 1;
+  min-width: 50px;
+}
+
+.mini-btn:hover {
+  border-color: #667eea;
+  transform: translateY(-1px);
+}
+
+.mini-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+}
+
+.add-card-btn {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.add-card-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.add-card-btn:active {
+  transform: translateY(0);
+}
+
+/* Children container */
+.children-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .guide-text {
+    font-size: 1rem;
+  }
+
+  .results {
+    gap: 5px;
+    justify-content: flex-start;
+  }
+
+  .card-wrapper {
+    width: calc((100% - 20px) / 5);
+    min-width: calc((100% - 20px) / 5);
+    max-width: calc((100% - 20px) / 5);
+    padding: 5px;
+    flex: 0 0 auto;
+  }
+
+  .card-wrapper[data-depth="1"],
+  .card-wrapper[data-depth="2"] {
+    width: calc((100% - 20px) / 5);
+    min-width: calc((100% - 20px) / 5);
+    max-width: calc((100% - 20px) / 5);
+    padding: 4px;
+  }
+
+  .card-name-overlay {
+    font-size: 0.5rem;
+    padding: 2px;
+    line-height: 1.2;
+  }
+
+  .children-container {
+    gap: 5px;
+    justify-content: flex-start;
+  }
+
+  .card-emoji {
+    font-size: 1.5rem;
+    margin-bottom: 3px;
+  }
+
+  .lenormand-card {
+    min-height: 80px;
+    padding: 5px;
+  }
+
+  .lenormand-card .card-name {
+    font-size: 0.5rem;
+  }
+
+  .color-card {
+    min-height: 70px;
+    padding: 10px;
+  }
+
+  .color-name {
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+
+  .card-add-section {
+    margin-top: 5px;
+    padding-top: 5px;
+  }
+
+  .add-controls {
+    gap: 4px;
+  }
+
+  .mini-btn {
+    padding: 3px 4px;
+    font-size: 0.55rem;
+    min-width: 30px;
+  }
+
+  .add-card-btn {
+    padding: 4px 6px;
+    font-size: 0.6rem;
+  }
+
+  .selection-panel {
+    padding: 20px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .type-btn,
+  .count-btn {
+    min-width: 100%;
+  }
+
+  .add-type-btns,
+  .add-count-btns {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 5px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .results {
+    gap: 4px;
+    justify-content: flex-start;
+  }
+
+  .card-wrapper {
+    width: calc((100% - 16px) / 5);
+    min-width: calc((100% - 16px) / 5);
+    max-width: calc((100% - 16px) / 5);
+    padding: 4px;
+  }
+
+  .card-wrapper[data-depth="1"],
+  .card-wrapper[data-depth="2"] {
+    width: calc((100% - 16px) / 5);
+    min-width: calc((100% - 16px) / 5);
+    max-width: calc((100% - 16px) / 5);
+    padding: 3px;
+  }
+
+  .children-container {
+    gap: 4px;
+    justify-content: flex-start;
+  }
+
+  .card-name-overlay {
+    font-size: 0.45rem;
+    padding: 2px;
+    line-height: 1.1;
+  }
+
+  .card-emoji {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+  }
+
+  .lenormand-card {
+    min-height: 70px;
+    padding: 4px;
+  }
+
+  .lenormand-card .card-name {
+    font-size: 0.45rem;
+  }
+
+  .color-card {
+    min-height: 60px;
+    padding: 8px;
+  }
+
+  .color-name {
+    font-size: 0.6rem;
+    letter-spacing: 0.3px;
+  }
+
+  .add-card-btn {
+    font-size: 0.55rem;
+    padding: 4px 6px;
+  }
+
+  .mini-btn {
+    font-size: 0.5rem;
+    padding: 2px 4px;
+  }
+}
