@@ -278,7 +278,7 @@ function createCardElement(card, depth) {
 
   // Add button section (only for depth 0 and 1)
   const cardInfo = cardHierarchy[card.id];
-  if (cardInfo && cardInfo.addCount < 2 && depth < 2) {
+  if (cardInfo && depth < 2) {
     const addSection = document.createElement('div');
     addSection.className = 'card-add-section';
     addSection.innerHTML = `
@@ -345,11 +345,23 @@ function setupAddControls(addSection, parentCardId) {
 
 function addCardsToParent(parentCardId, type, count) {
   const parentInfo = cardHierarchy[parentCardId];
-  if (!parentInfo || parentInfo.addCount >= 2) return;
+  if (!parentInfo) return;
 
-  const newCards = getRandomCards(type, count);
   const parentWrapper = document.querySelector(`[data-card-id="${parentCardId}"]`);
   const parentDepth = parseInt(parentWrapper.querySelector('.card-main').dataset.depth);
+  const childrenContainer = document.getElementById(`children-${parentCardId}`);
+
+  // Clear existing children from hierarchy
+  parentInfo.children.forEach(childId => {
+    clearCardHierarchy(childId);
+  });
+  parentInfo.children = [];
+
+  // Clear existing children from DOM
+  childrenContainer.innerHTML = '';
+
+  // Create new cards
+  const newCards = getRandomCards(type, count);
 
   // Assign IDs and add to hierarchy
   newCards.forEach(card => {
@@ -363,23 +375,24 @@ function addCardsToParent(parentCardId, type, count) {
     parentInfo.children.push(card.id);
   });
 
-  // Update parent's add count
-  parentInfo.addCount++;
-
   // Render new cards
-  const childrenContainer = document.getElementById(`children-${parentCardId}`);
   newCards.forEach(card => {
     const cardElement = createCardElement(card, parentDepth + 1);
     childrenContainer.appendChild(cardElement);
   });
+}
 
-  // Update add button
-  const cardMain = parentWrapper.querySelector('.card-main');
-  const addSection = cardMain.querySelector('.card-add-section');
+function clearCardHierarchy(cardId) {
+  const cardInfo = cardHierarchy[cardId];
+  if (!cardInfo) return;
 
-  if (parentInfo.addCount >= 2) {
-    addSection.remove();
-  }
+  // Recursively clear children
+  cardInfo.children.forEach(childId => {
+    clearCardHierarchy(childId);
+  });
+
+  // Remove from hierarchy
+  delete cardHierarchy[cardId];
 }
 
 function shouldUseWhiteText(hexColor) {
