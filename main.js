@@ -374,7 +374,6 @@ function addCardsToParent(parentCardId, type, count) {
   });
 
   // Update add button
-  const parentWrapper = document.querySelector(`[data-card-id="${parentCardId}"]`);
   const cardMain = parentWrapper.querySelector('.card-main');
   const addBtn = cardMain.querySelector('.add-card-btn');
   const addSection = cardMain.querySelector('.card-add-section');
