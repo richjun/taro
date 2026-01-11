@@ -368,6 +368,10 @@ h1 {
 
 /* Responsive design */
 @media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
   h1 {
     font-size: 2rem;
   }
@@ -376,97 +380,27 @@ h1 {
     font-size: 1rem;
   }
 
-  .results {
-    gap: 5px;
-    justify-content: flex-start;
+  .selection-panel {
+    padding: 15px;
   }
 
-  .card-main {
-    width: calc((100% - 20px) / 5);
-    min-width: calc((100% - 20px) / 5);
-    max-width: calc((100% - 20px) / 5);
-    padding: 5px;
-    flex: 0 0 auto;
-  }
-
-  .card-main[data-depth="1"],
-  .card-main[data-depth="2"] {
-    width: calc((100% - 20px) / 5);
-    min-width: calc((100% - 20px) / 5);
-    max-width: calc((100% - 20px) / 5);
-    padding: 4px;
-  }
-
-  .card-name-overlay {
-    font-size: 0.5rem;
-    padding: 2px;
-    line-height: 1.2;
-  }
-
-  .children-container {
-    gap: 5px;
-    justify-content: flex-start;
-  }
-
-  .card-emoji {
-    font-size: 1.5rem;
-    margin-bottom: 3px;
-  }
-
-  .lenormand-card {
-    min-height: 80px;
-    padding: 5px;
-  }
-
-  .lenormand-card .card-name {
-    font-size: 0.5rem;
-  }
-
-  .color-card {
-    min-height: 70px;
+  .question-input {
+    font-size: 0.9rem;
     padding: 10px;
   }
 
-  .color-name {
-    font-size: 0.7rem;
-    letter-spacing: 0.5px;
-  }
-
-  .card-add-section {
-    margin-top: 5px;
-    padding-top: 5px;
-  }
-
-  .add-controls {
-    gap: 4px;
-  }
-
-  .mini-btn {
-    padding: 3px 4px;
-    font-size: 0.55rem;
-    min-width: 30px;
-  }
-
-  .add-card-btn {
-    padding: 4px 6px;
-    font-size: 0.6rem;
-  }
-
-  .selection-panel {
-    padding: 20px;
-  }
-
   .button-group {
-    flex-direction: column;
+    gap: 8px;
   }
 
   .type-btn,
   .count-btn {
-    min-width: 100%;
+    font-size: 0.9rem;
+    padding: 10px 15px;
   }
 
   .action-buttons {
-    flex-direction: column;
+    gap: 8px;
   }
 
   .draw-btn,
@@ -475,83 +409,184 @@ h1 {
     padding: 12px 20px;
   }
 
-  .add-type-btns,
-  .add-count-btns {
-    flex-wrap: wrap;
+  .results {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .card-wrapper {
+    width: 100%;
+  }
+
+  .card-main {
+    width: calc((100% - 10px) / 2);
+    min-width: calc((100% - 10px) / 2);
+    max-width: calc((100% - 10px) / 2);
+    padding: 10px;
+  }
+
+  .card-main[data-depth="1"],
+  .card-main[data-depth="2"] {
+    width: calc((100% - 10px) / 2);
+    min-width: calc((100% - 10px) / 2);
+    max-width: calc((100% - 10px) / 2);
+    padding: 8px;
+  }
+
+  .card-name-overlay {
+    font-size: 0.75rem;
+    padding: 6px;
+    line-height: 1.3;
+  }
+
+  .children-container {
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .card-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+  }
+
+  .lenormand-card {
+    min-height: 140px;
+    padding: 15px;
+  }
+
+  .lenormand-card .card-name {
+    font-size: 0.85rem;
+  }
+
+  .color-card {
+    min-height: 120px;
+    padding: 20px;
+  }
+
+  .color-name {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+
+  .card-add-section {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
+  .add-controls {
+    gap: 6px;
+  }
+
+  .mini-btn {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    min-width: 40px;
+  }
+
+  .add-card-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
   body {
-    padding: 5px;
+    padding: 8px;
   }
 
   h1 {
     font-size: 1.5rem;
   }
 
+  .guide-text {
+    font-size: 0.9rem;
+  }
+
+  .selection-panel {
+    padding: 12px;
+  }
+
+  .question-input {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .type-btn,
+  .count-btn {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+
+  .draw-btn,
+  .copy-btn {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+
   .results {
-    gap: 4px;
-    justify-content: flex-start;
+    gap: 8px;
+    justify-content: center;
   }
 
   .card-main {
-    width: calc((100% - 16px) / 5);
-    min-width: calc((100% - 16px) / 5);
-    max-width: calc((100% - 16px) / 5);
-    padding: 4px;
+    width: calc((100% - 8px) / 2);
+    min-width: calc((100% - 8px) / 2);
+    max-width: calc((100% - 8px) / 2);
+    padding: 8px;
   }
 
   .card-main[data-depth="1"],
   .card-main[data-depth="2"] {
-    width: calc((100% - 16px) / 5);
-    min-width: calc((100% - 16px) / 5);
-    max-width: calc((100% - 16px) / 5);
-    padding: 3px;
+    width: calc((100% - 8px) / 2);
+    min-width: calc((100% - 8px) / 2);
+    max-width: calc((100% - 8px) / 2);
+    padding: 6px;
   }
 
   .children-container {
-    gap: 4px;
-    justify-content: flex-start;
+    gap: 8px;
+    justify-content: center;
   }
 
   .card-name-overlay {
-    font-size: 0.45rem;
-    padding: 2px;
-    line-height: 1.1;
+    font-size: 0.65rem;
+    padding: 4px;
+    line-height: 1.2;
   }
 
   .card-emoji {
-    font-size: 1.2rem;
-    margin-bottom: 2px;
+    font-size: 2rem;
+    margin-bottom: 6px;
   }
 
   .lenormand-card {
-    min-height: 70px;
-    padding: 4px;
+    min-height: 110px;
+    padding: 12px;
   }
 
   .lenormand-card .card-name {
-    font-size: 0.45rem;
+    font-size: 0.75rem;
   }
 
   .color-card {
-    min-height: 60px;
-    padding: 8px;
+    min-height: 100px;
+    padding: 15px;
   }
 
   .color-name {
-    font-size: 0.6rem;
-    letter-spacing: 0.3px;
+    font-size: 1rem;
+    letter-spacing: 0.8px;
   }
 
   .add-card-btn {
-    font-size: 0.55rem;
-    padding: 4px 6px;
+    font-size: 0.75rem;
+    padding: 6px 10px;
   }
 
   .mini-btn {
-    font-size: 0.5rem;
-    padding: 2px 4px;
+    font-size: 0.65rem;
+    padding: 5px 8px;
+    min-width: 35px;
   }
 }
