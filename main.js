@@ -293,7 +293,7 @@ function createCardElement(card, depth) {
           <button class="mini-btn" data-count="3">3</button>
         </div>
         <button class="add-card-btn">
-          추가 (${2 - cardInfo.addCount}번 가능)
+          추가
         </button>
       </div>
     `;
@@ -375,13 +375,10 @@ function addCardsToParent(parentCardId, type, count) {
 
   // Update add button
   const cardMain = parentWrapper.querySelector('.card-main');
-  const addBtn = cardMain.querySelector('.add-card-btn');
   const addSection = cardMain.querySelector('.card-add-section');
 
   if (parentInfo.addCount >= 2) {
     addSection.remove();
-  } else {
-    addBtn.textContent = `추가 (${2 - parentInfo.addCount}번 가능)`;
   }
 }
 
