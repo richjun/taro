@@ -177,6 +177,7 @@ function setupEventListeners() {
   });
 
   document.getElementById('drawBtn').addEventListener('click', drawInitialCards);
+  document.getElementById('copyBtn').addEventListener('click', copyCardsToClipboard);
 }
 
 function drawInitialCards() {
@@ -401,4 +402,48 @@ function shouldUseWhiteText(hexColor) {
   const b = parseInt(hexColor.slice(5, 7), 16);
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return luminance < 0.5;
+}
+
+function copyCardsToClipboard() {
+  const rootCards = Object.values(cardHierarchy).filter(info => info.parentId === null);
+
+  if (rootCards.length === 0) {
+    alert('카드를 먼저 뽑아주세요!');
+    return;
+  }
+
+  let text = '🔮 리치타로 카드 리딩 결과\n\n';
+
+  rootCards.forEach((cardInfo, index) => {
+    text += formatCardTree(cardInfo, 0, index + 1);
+  });
+
+  navigator.clipboard.writeText(text).then(() => {
+    const copyBtn = document.getElementById('copyBtn');
+    const originalText = copyBtn.textContent;
+    copyBtn.textContent = '✓ 복사완료!';
+    setTimeout(() => {
+      copyBtn.textContent = originalText;
+    }, 2000);
+  }).catch(err => {
+    console.error('복사 실패:', err);
+    alert('복사에 실패했습니다.');
+  });
+}
+
+function formatCardTree(cardInfo, depth, number) {
+  const indent = '  '.repeat(depth);
+  const prefix = depth === 0 ? `${number}. ` : '↳ ';
+  let text = `${indent}${prefix}${cardInfo.card.name}\n`;
+
+  if (cardInfo.children.length > 0) {
+    cardInfo.children.forEach((childId, index) => {
+      const childInfo = cardHierarchy[childId];
+      if (childInfo) {
+        text += formatCardTree(childInfo, depth + 1, index + 1);
+      }
+    });
+  }
+
+  return text;
 }

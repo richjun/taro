@@ -86,10 +86,15 @@ h1 {
   border-color: transparent;
 }
 
-.draw-btn {
-  width: 100%;
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.draw-btn,
+.copy-btn {
+  flex: 1;
   padding: 15px 30px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 10px;
@@ -97,6 +102,10 @@ h1 {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.draw-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
@@ -107,6 +116,26 @@ h1 {
 
 .draw-btn:active {
   transform: translateY(0);
+}
+
+.copy-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+}
+
+.copy-btn:active {
+  transform: translateY(0);
+}
+
+.copy-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .results {
@@ -416,6 +445,16 @@ h1 {
   .type-btn,
   .count-btn {
     min-width: 100%;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .draw-btn,
+  .copy-btn {
+    font-size: 1rem;
+    padding: 12px 20px;
   }
 
   .add-type-btns,
