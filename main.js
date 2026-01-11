@@ -235,7 +235,10 @@ function createCardElement(card, depth) {
   const wrapper = document.createElement('div');
   wrapper.className = 'card-wrapper';
   wrapper.dataset.cardId = card.id;
-  wrapper.dataset.depth = depth;
+
+  const cardMain = document.createElement('div');
+  cardMain.className = 'card-main';
+  cardMain.dataset.depth = depth;
 
   let cardHTML = '';
 
@@ -271,7 +274,7 @@ function createCardElement(card, depth) {
     `;
   }
 
-  wrapper.innerHTML = cardHTML;
+  cardMain.innerHTML = cardHTML;
 
   // Add button section
   const cardInfo = cardHierarchy[card.id];
@@ -297,8 +300,10 @@ function createCardElement(card, depth) {
 
     // Setup event listeners for this card's add controls
     setupAddControls(addSection, card.id);
-    wrapper.appendChild(addSection);
+    cardMain.appendChild(addSection);
   }
+
+  wrapper.appendChild(cardMain);
 
   // Container for child cards
   const childrenContainer = document.createElement('div');
@@ -343,7 +348,8 @@ function addCardsToParent(parentCardId, type, count) {
   if (!parentInfo || parentInfo.addCount >= 2) return;
 
   const newCards = getRandomCards(type, count);
-  const parentDepth = parseInt(document.querySelector(`[data-card-id="${parentCardId}"]`).dataset.depth);
+  const parentWrapper = document.querySelector(`[data-card-id="${parentCardId}"]`);
+  const parentDepth = parseInt(parentWrapper.querySelector('.card-main').dataset.depth);
 
   // Assign IDs and add to hierarchy
   newCards.forEach(card => {
@@ -369,8 +375,9 @@ function addCardsToParent(parentCardId, type, count) {
 
   // Update add button
   const parentWrapper = document.querySelector(`[data-card-id="${parentCardId}"]`);
-  const addBtn = parentWrapper.querySelector('.add-card-btn');
-  const addSection = parentWrapper.querySelector('.card-add-section');
+  const cardMain = parentWrapper.querySelector('.card-main');
+  const addBtn = cardMain.querySelector('.add-card-btn');
+  const addSection = cardMain.querySelector('.card-add-section');
 
   if (parentInfo.addCount >= 2) {
     addSection.remove();

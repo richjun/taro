@@ -118,6 +118,13 @@ h1 {
 }
 
 .card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.card-main {
   background: white;
   border-radius: 20px;
   padding: 20px;
@@ -129,19 +136,20 @@ h1 {
   flex-direction: column;
   min-width: 280px;
   max-width: 350px;
+  width: 100%;
 }
 
-.card-wrapper[data-depth="0"] {
+.card-main[data-depth="0"] {
   background: white;
 }
 
-.card-wrapper[data-depth="1"] {
+.card-main[data-depth="1"] {
   background: rgba(255, 255, 255, 0.95);
   max-width: 250px;
   min-width: 200px;
 }
 
-.card-wrapper[data-depth="2"] {
+.card-main[data-depth="2"] {
   background: rgba(255, 255, 255, 0.9);
   max-width: 220px;
   min-width: 180px;
@@ -326,7 +334,7 @@ h1 {
     justify-content: flex-start;
   }
 
-  .card-wrapper {
+  .card-main {
     width: calc((100% - 20px) / 5);
     min-width: calc((100% - 20px) / 5);
     max-width: calc((100% - 20px) / 5);
@@ -334,8 +342,8 @@ h1 {
     flex: 0 0 auto;
   }
 
-  .card-wrapper[data-depth="1"],
-  .card-wrapper[data-depth="2"] {
+  .card-main[data-depth="1"],
+  .card-main[data-depth="2"] {
     width: calc((100% - 20px) / 5);
     min-width: calc((100% - 20px) / 5);
     max-width: calc((100% - 20px) / 5);
@@ -430,15 +438,15 @@ h1 {
     justify-content: flex-start;
   }
 
-  .card-wrapper {
+  .card-main {
     width: calc((100% - 16px) / 5);
     min-width: calc((100% - 16px) / 5);
     max-width: calc((100% - 16px) / 5);
     padding: 4px;
   }
 
-  .card-wrapper[data-depth="1"],
-  .card-wrapper[data-depth="2"] {
+  .card-main[data-depth="1"],
+  .card-main[data-depth="2"] {
     width: calc((100% - 16px) / 5);
     min-width: calc((100% - 16px) / 5);
     max-width: calc((100% - 16px) / 5);
