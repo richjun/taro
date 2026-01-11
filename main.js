@@ -147,7 +147,7 @@ const cardData = {
 
 // State
 let selectedType = 'tarot';
-let selectedCount = 1;
+let selectedCount = 5;
 let cardIdCounter = 0;
 let cardHierarchy = {}; // Track parent-child relationships and add counts
 
@@ -412,7 +412,12 @@ function copyCardsToClipboard() {
     return;
   }
 
+  const question = document.getElementById('questionInput').value.trim();
   let text = '';
+
+  if (question) {
+    text = question + '\n\n';
+  }
 
   rootCards.forEach((cardInfo, index) => {
     text += formatCardTree(cardInfo, 0, index + 1);
